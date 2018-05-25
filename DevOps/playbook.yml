@@ -1,4 +1,7 @@
+---
 - name: Let's our custom nginx roler here
   hosts: all
   roles:
    - nginx
+
+...
