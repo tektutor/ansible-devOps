@@ -1,0 +1,22 @@
+- name: Demonstrates using docker_container module
+  hosts: localhost
+  tasks:
+    - name: Start two centos containers
+      docker_container: 
+        image: tektutor/devops-centos
+        state: started
+        name: "centos{{item}}"
+        ports: 
+          - "300{{item}}:22"
+          - "900{{item}}:80"
+      with_sequence: start=1 end=2
+
+    - name: Start two ubuntu containers
+      docker_container: 
+        image: tektutor/devops-ubuntu
+        state: started
+        name: "ubuntu{{item}}"
+        ports: 
+          - "200{{item}}:22"
+          - "800{{item}}:80"
+      with_sequence: start=1 end=2
